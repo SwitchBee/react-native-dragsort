@@ -1,0 +1,16 @@
+{
+  "name": "react-native-dragsort-example",
+  "displayName": "DragsortGrid Example",
+  "expo": {
+    "name": "react-native-dragsort-example",
+    "slug": "react-native-dragsort-example",
+    "description": "Example app for react-native-dragsort",
+    "privacy": "public",
+    "version": "1.0.0",
+    "platforms": ["ios", "android", "web"],
+    "ios": {
+      "supportsTablet": true
+    },
+    "assetBundlePatterns": ["**/*"]
+  }
+}
