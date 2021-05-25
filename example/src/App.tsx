@@ -1,21 +1,68 @@
-import * as React from 'react';
+import React from 'react';
 
-import { StyleSheet, Text, View } from 'react-native';
-import DragSort from 'react-native-dragsort';
+import DragSort from '../../src/index';
+import { Text, View } from 'react-native';
 
-export default function App() {
-  return <DragSort.Grid />;
-}
+const tiles = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
-  },
-});
+const getRandomColor = () => {
+  return (
+    'rgb(' +
+    Math.floor(Math.random() * 256 + 50) +
+    ',' +
+    Math.floor(Math.random() * 256 + 50) +
+    ',' +
+    Math.floor(Math.random() * 256 + 50) +
+    ')'
+  );
+};
+
+const App = () => {
+  return (
+    <>
+      <View
+        style={{
+          flex: 1,
+          marginTop: 50,
+          backgroundColor: 'white',
+          paddingHorizontal: 8,
+        }}
+      >
+        <DragSort.Grid
+          editing={true}
+          onDragEnd={(positions) =>
+            console.log(JSON.stringify(positions, null, 2))
+          }
+        >
+          {[...tiles].map((tile, index) => (
+            <DragSort.Tile
+              onLongPress={() => true}
+              key={index}
+              id={index.toString()}
+            >
+              <View
+                style={{
+                  backgroundColor: getRandomColor(),
+                  width: '100%',
+                  height: '100%',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  borderRadius: 40,
+                }}
+              >
+                <Text
+                  style={{ fontSize: 28, color: 'blue', fontWeight: 'bold' }}
+                >
+                  {' '}
+                  {index}{' '}
+                </Text>
+              </View>
+            </DragSort.Tile>
+          ))}
+        </DragSort.Grid>
+      </View>
+    </>
+  );
+};
+
+export default App;
