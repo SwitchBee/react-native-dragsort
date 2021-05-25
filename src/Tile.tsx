@@ -6,7 +6,7 @@ import { MARGIN, SIZE } from './Config';
 const styles = StyleSheet.create({
   container: {
     width: SIZE - MARGIN,
-    height: 100,
+    height: 200,
   },
 });
 interface TileProps {
