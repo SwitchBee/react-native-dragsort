@@ -1,6 +1,6 @@
 import React from 'react';
 
-import DragSort from '../../src/index';
+import { Grid, Tile } from '../../src/index';
 import { Text, View } from 'react-native';
 
 const tiles = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
@@ -28,18 +28,14 @@ const App = () => {
           paddingHorizontal: 8,
         }}
       >
-        <DragSort.Grid
+        <Grid
           editing={true}
           onDragEnd={(positions) =>
             console.log(JSON.stringify(positions, null, 2))
           }
         >
           {[...tiles].map((tile, index) => (
-            <DragSort.Tile
-              onLongPress={() => true}
-              key={index}
-              id={index.toString()}
-            >
+            <Tile onLongPress={() => true} key={index} id={index.toString()}>
               <View
                 style={{
                   backgroundColor: getRandomColor(),
@@ -57,9 +53,9 @@ const App = () => {
                   {index}{' '}
                 </Text>
               </View>
-            </DragSort.Tile>
+            </Tile>
           ))}
-        </DragSort.Grid>
+        </Grid>
       </View>
     </>
   );
