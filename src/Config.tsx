@@ -7,7 +7,7 @@ export interface Positions {
 
 const { width } = Dimensions.get('window');
 export const MARGIN = 8;
-export const COL = 2;
+export const COL = 4;
 export const SIZE = width / COL - MARGIN;
 
 export const animationConfig = {
@@ -15,12 +15,12 @@ export const animationConfig = {
   duration: 350,
 };
 
-export const getPosition = (position: number) => {
+export const getPosition = (order: number) => {
   'worklet';
 
   return {
-    x: position % COL === 0 ? 0 : SIZE,
-    y: Math.floor(position / COL) * SIZE,
+    x: (order % COL) * SIZE,
+    y: Math.floor(order / COL) * SIZE,
   };
 };
 

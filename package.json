@@ -1,5 +1,5 @@
 {
-  "name": "react-native-dragsort",
+  "name": "react-native-drag-and-sort",
   "version": "0.0.1",
   "description": "The is a component for react native which lets you sort a grid and sort other grids by dragging",
   "main": "lib/commonjs/index",

@@ -1,4 +1,3 @@
-import Grid from './DragSortGrid';
-export default {
-  Grid,
-};
+import Grid from './SortableGrid';
+import Tile from './Tile';
+export default { Grid, Tile };
