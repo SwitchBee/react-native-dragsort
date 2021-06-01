@@ -1,5 +1,5 @@
 import React, { ReactElement, useContext } from 'react';
-import { StyleSheet, View, ViewStyle } from 'react-native';
+import { View, ViewStyle } from 'react-native';
 import { ConfigContext } from './ConfigContext';
 
 interface TileProps {

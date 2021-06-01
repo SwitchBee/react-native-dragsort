@@ -2,7 +2,6 @@ import { ConfigContext } from './ConfigContext';
 import React, { ReactElement, useState } from 'react';
 import { Dimensions } from 'react-native';
 import { getOrder, getPosition } from './ConfigContext';
-import { MARGIN } from 'lib/typescript/Config';
 export interface Positions {
   [id: string]: number;
 }

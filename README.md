@@ -14,7 +14,7 @@ items. Built with fast and smooth animations using react native reanimated 2. Wo
 ## Installation
 
 ```sh
-yarn add react-native-dragsort
+yarn add react-native-drag-and-sort
 ```
 
 ### SortableContainer
