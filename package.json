@@ -1,6 +1,6 @@
 {
   "name": "react-native-drag-and-sort",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "The is a component for react native which lets you sort a grid and sort other grids by dragging",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -156,7 +156,6 @@
   },
   "dependencies": {
     "react-native-gesture-handler": "^1.10.3",
-    "react-native-reanimated": "^2.1.0",
-    "react-native-redash": "^16.0.11"
+    "react-native-reanimated": "^2.2.0"
   }
 }
