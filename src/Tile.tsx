@@ -1,23 +1,23 @@
-import React, { ReactElement } from 'react';
-import { StyleSheet, View } from 'react-native';
+import React, { ReactElement, useContext } from 'react';
+import { StyleSheet, View, ViewStyle } from 'react-native';
+import { ConfigContext } from './ConfigContext';
 
-import { MARGIN, SIZE } from './Config';
-
-const styles = StyleSheet.create({
-  container: {
-    width: SIZE - MARGIN,
-    height: 200,
-  },
-});
 interface TileProps {
   id: string;
   children: ReactElement;
   onLongPress: () => void;
+  style?: ViewStyle;
 }
 
-const Tile = ({ children }: TileProps) => {
+const Tile = ({ children, style }: TileProps) => {
+  const config = useContext(ConfigContext);
+  const { SIZE, MARGIN } = config;
+  const container = {
+    width: SIZE - MARGIN,
+    height: SIZE - MARGIN,
+  };
   return (
-    <View style={styles.container} pointerEvents="none">
+    <View style={[style, container]} pointerEvents="none">
       {children}
     </View>
   );

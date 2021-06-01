@@ -1,4 +1,4 @@
-import React, { ReactNode, RefObject } from 'react';
+import React, { ReactNode, RefObject, useContext } from 'react';
 import { Dimensions, StyleSheet } from 'react-native';
 import Animated, {
   useAnimatedGestureHandler,
@@ -15,14 +15,7 @@ import {
   PanGestureHandlerGestureEvent,
 } from 'react-native-gesture-handler';
 
-import {
-  animationConfig,
-  COL,
-  getOrder,
-  getPosition,
-  Positions,
-  SIZE,
-} from './Config';
+import { ConfigContext, animationConfig, Positions } from './ConfigContext';
 
 interface ItemProps {
   children: ReactNode;
@@ -43,11 +36,13 @@ const Item = ({
   scrollY,
   editing,
 }: ItemProps) => {
+  const config = useContext(ConfigContext);
+  const { SIZE, COL, getOrder, getPosition } = config;
   const containerHeight = Dimensions.get('window').height - 40;
   const contentHeight = (Object.keys(positions.value).length / COL) * SIZE;
   const isGestureActive = useSharedValue(false);
 
-  const position = getPosition(positions.value[id]!);
+  const position = getPosition(config, positions.value[id]!);
   const translateX = useSharedValue(position.x);
   const translateY = useSharedValue(position.y);
 
@@ -55,7 +50,7 @@ const Item = ({
     () => positions.value[id]!,
     (newOrder) => {
       if (!isGestureActive.value) {
-        const pos = getPosition(newOrder);
+        const pos = getPosition(config, newOrder);
         translateX.value = withTiming(pos.x, animationConfig);
         translateY.value = withTiming(pos.y, animationConfig);
       }
@@ -81,6 +76,7 @@ const Item = ({
         translateY.value = ctx.y + translationY;
         // 1. We calculate where the tile should be
         const newOrder = getOrder(
+          config,
           translateX.value,
           translateY.value,
           Object.keys(positions.value).length - 1
@@ -127,7 +123,7 @@ const Item = ({
       }
     },
     onEnd: () => {
-      const newPosition = getPosition(positions.value[id]!);
+      const newPosition = getPosition(config, positions.value[id]!);
       translateX.value = withTiming(newPosition.x, animationConfig, () => {
         isGestureActive.value = false;
         runOnJS(onDragEnd)(positions.value);

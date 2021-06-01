@@ -1,3 +1,4 @@
-import Grid from './SortableGrid';
-import Tile from './Tile';
-export { Grid, Tile };
+import SortableGrid from './SortableGrid';
+import SortableTile from './Tile';
+import SortableContainer from './SortableContainer';
+export { SortableGrid, SortableTile, SortableContainer };

@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useContext } from 'react';
 import Animated, {
   useAnimatedRef,
   useAnimatedScrollHandler,
@@ -6,15 +6,20 @@ import Animated, {
 } from 'react-native-reanimated';
 
 import Item from './Item';
-import { COL, Positions, SIZE } from './Config';
+import { ConfigContext } from './ConfigContext';
+
+interface Positions {
+  [id: string]: number;
+}
 
 interface ListProps {
   children: ReactElement<{ id: string }>[];
   editing: boolean;
   onDragEnd: (diff: Positions) => void;
 }
-
 const List = ({ children, editing, onDragEnd }: ListProps) => {
+  const config = useContext(ConfigContext);
+  const { SIZE, COL } = config;
   const scrollY = useSharedValue(0);
   const scrollView = useAnimatedRef<Animated.ScrollView>();
   const positions = useSharedValue<Positions>(
